@@ -1,0 +1,11 @@
+C:\code\Advent-of-Code-2020\Common\bin\Debug\net5.0\Helpers.deps.json
+C:\code\Advent-of-Code-2020\Common\bin\Debug\net5.0\Helpers.dll
+C:\code\Advent-of-Code-2020\Common\bin\Debug\net5.0\ref\Helpers.dll
+C:\code\Advent-of-Code-2020\Common\bin\Debug\net5.0\Helpers.pdb
+C:\code\Advent-of-Code-2020\Common\obj\Debug\net5.0\Helpers.GeneratedMSBuildEditorConfig.editorconfig
+C:\code\Advent-of-Code-2020\Common\obj\Debug\net5.0\Helpers.AssemblyInfoInputs.cache
+C:\code\Advent-of-Code-2020\Common\obj\Debug\net5.0\Helpers.AssemblyInfo.cs
+C:\code\Advent-of-Code-2020\Common\obj\Debug\net5.0\Helpers.csproj.CoreCompileInputs.cache
+C:\code\Advent-of-Code-2020\Common\obj\Debug\net5.0\Helpers.dll
+C:\code\Advent-of-Code-2020\Common\obj\Debug\net5.0\ref\Helpers.dll
+C:\code\Advent-of-Code-2020\Common\obj\Debug\net5.0\Helpers.pdb
