@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\code\\Advent-of-Code-2020\\Day1\\Day1.csproj": {}
+    "C:\\code\\Advent-of-code-2020\\Day1\\Day1.csproj": {}
   },
   "projects": {
-    "C:\\code\\Advent-of-Code-2020\\Common\\Helpers.csproj": {
+    "C:\\code\\Advent-of-code-2020\\Common\\Helpers.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\code\\Advent-of-Code-2020\\Common\\Helpers.csproj",
+        "projectUniqueName": "C:\\code\\Advent-of-code-2020\\Common\\Helpers.csproj",
         "projectName": "Helpers",
-        "projectPath": "C:\\code\\Advent-of-Code-2020\\Common\\Helpers.csproj",
+        "projectPath": "C:\\code\\Advent-of-code-2020\\Common\\Helpers.csproj",
         "packagesPath": "C:\\Users\\Tom Rosenback\\.nuget\\packages\\",
-        "outputPath": "C:\\code\\Advent-of-Code-2020\\Common\\obj\\",
+        "outputPath": "C:\\code\\Advent-of-code-2020\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -61,14 +61,14 @@
         }
       }
     },
-    "C:\\code\\Advent-of-Code-2020\\Day1\\Day1.csproj": {
+    "C:\\code\\Advent-of-code-2020\\Day1\\Day1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\code\\Advent-of-Code-2020\\Day1\\Day1.csproj",
+        "projectUniqueName": "C:\\code\\Advent-of-code-2020\\Day1\\Day1.csproj",
         "projectName": "Day1",
-        "projectPath": "C:\\code\\Advent-of-Code-2020\\Day1\\Day1.csproj",
+        "projectPath": "C:\\code\\Advent-of-code-2020\\Day1\\Day1.csproj",
         "packagesPath": "C:\\Users\\Tom Rosenback\\.nuget\\packages\\",
-        "outputPath": "C:\\code\\Advent-of-Code-2020\\Day1\\obj\\",
+        "outputPath": "C:\\code\\Advent-of-code-2020\\Day1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -88,8 +88,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\code\\Advent-of-Code-2020\\Common\\Helpers.csproj": {
-                "projectPath": "C:\\code\\Advent-of-Code-2020\\Common\\Helpers.csproj"
+              "C:\\code\\Advent-of-code-2020\\Common\\Helpers.csproj": {
+                "projectPath": "C:\\code\\Advent-of-code-2020\\Common\\Helpers.csproj"
               }
             }
           }

@@ -109,3 +109,6 @@ C:\code\Advent-of-Code-2020\XUnitTests\obj\Debug\net5.0\XUnitTests.dll
 C:\code\Advent-of-Code-2020\XUnitTests\obj\Debug\net5.0\ref\XUnitTests.dll
 C:\code\Advent-of-Code-2020\XUnitTests\obj\Debug\net5.0\XUnitTests.pdb
 C:\code\Advent-of-Code-2020\XUnitTests\obj\Debug\net5.0\XUnitTests.genruntimeconfig.cache
+C:\code\Advent-of-code-2020\XUnitTests\bin\Debug\net5.0\Day5.exe
+C:\code\Advent-of-code-2020\XUnitTests\bin\Debug\net5.0\Day5.dll
+C:\code\Advent-of-code-2020\XUnitTests\bin\Debug\net5.0\Day5.pdb

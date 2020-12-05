@@ -1688,6 +1688,19 @@
           "bin/placeholder/Day4.dll": {}
         }
       },
+      "Day5/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Helpers": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Day5.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Day5.dll": {}
+        }
+      },
       "Helpers/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -5676,6 +5689,11 @@
       "path": "../Day4/Day4.csproj",
       "msbuildProject": "../Day4/Day4.csproj"
     },
+    "Day5/1.0.0": {
+      "type": "project",
+      "path": "../Day5/Day5.csproj",
+      "msbuildProject": "../Day5/Day5.csproj"
+    },
     "Helpers/1.0.0": {
       "type": "project",
       "path": "../Common/Helpers.csproj",
@@ -5687,6 +5705,7 @@
       "Day2 >= 1.0.0",
       "Day3 >= 1.0.0",
       "Day4 >= 1.0.0",
+      "Day5 >= 1.0.0",
       "Helpers >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 16.8.0",
       "coverlet.collector >= 1.3.0",
@@ -5701,11 +5720,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\code\\Advent-of-Code-2020\\XUnitTests\\XUnitTests.csproj",
+      "projectUniqueName": "C:\\code\\Advent-of-code-2020\\XUnitTests\\XUnitTests.csproj",
       "projectName": "XUnitTests",
-      "projectPath": "C:\\code\\Advent-of-Code-2020\\XUnitTests\\XUnitTests.csproj",
+      "projectPath": "C:\\code\\Advent-of-code-2020\\XUnitTests\\XUnitTests.csproj",
       "packagesPath": "C:\\Users\\Tom Rosenback\\.nuget\\packages\\",
-      "outputPath": "C:\\code\\Advent-of-Code-2020\\XUnitTests\\obj\\",
+      "outputPath": "C:\\code\\Advent-of-code-2020\\XUnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -5725,17 +5744,20 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\code\\Advent-of-Code-2020\\Common\\Helpers.csproj": {
-              "projectPath": "C:\\code\\Advent-of-Code-2020\\Common\\Helpers.csproj"
+            "C:\\code\\Advent-of-code-2020\\Common\\Helpers.csproj": {
+              "projectPath": "C:\\code\\Advent-of-code-2020\\Common\\Helpers.csproj"
             },
-            "C:\\code\\Advent-of-Code-2020\\Day2\\Day2.csproj": {
-              "projectPath": "C:\\code\\Advent-of-Code-2020\\Day2\\Day2.csproj"
+            "C:\\code\\Advent-of-code-2020\\Day2\\Day2.csproj": {
+              "projectPath": "C:\\code\\Advent-of-code-2020\\Day2\\Day2.csproj"
             },
-            "C:\\code\\Advent-of-Code-2020\\Day3\\Day3.csproj": {
-              "projectPath": "C:\\code\\Advent-of-Code-2020\\Day3\\Day3.csproj"
+            "C:\\code\\Advent-of-code-2020\\Day3\\Day3.csproj": {
+              "projectPath": "C:\\code\\Advent-of-code-2020\\Day3\\Day3.csproj"
             },
-            "C:\\code\\Advent-of-Code-2020\\Day4\\Day4.csproj": {
-              "projectPath": "C:\\code\\Advent-of-Code-2020\\Day4\\Day4.csproj"
+            "C:\\code\\Advent-of-code-2020\\Day4\\Day4.csproj": {
+              "projectPath": "C:\\code\\Advent-of-code-2020\\Day4\\Day4.csproj"
+            },
+            "C:\\code\\Advent-of-code-2020\\Day5\\Day5.csproj": {
+              "projectPath": "C:\\code\\Advent-of-code-2020\\Day5\\Day5.csproj"
             }
           }
         }
