@@ -9,7 +9,7 @@ namespace Day5
         {
             var tickets = Application.GetTickets("day5-input.txt");
 
-            var highestId = tickets.Select(t => t.GetSeat().SeatId).Max(t => t);
+            var highestId = tickets.Select(t => t.SeatId).Max(t => t);
             Console.WriteLine("Seat with highest id: {0}", highestId);
 
             var seat = Application.FindMySeat(tickets);

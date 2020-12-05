@@ -19,28 +19,20 @@ namespace XUnitTests
         {
             var tickets = Application.GetTickets("day5-test.txt");
             Assert.Equal(4, tickets.Count());
-
             Assert.Equal("BBFFBBFRLL", tickets.Last().TicketId);
+        }
 
-            var seats = new List<Seat>()
-            {
-                new Seat() { Row = 44, Column = 5, SeatIdValidation = 357 },
-                new Seat() { Row = 70, Column = 7, SeatIdValidation = 567 },
-                new Seat() { Row = 14, Column = 7, SeatIdValidation = 119 },
-                new Seat() { Row = 102, Column = 4, SeatIdValidation = 820 },
-            };
-
-            Assert.Equal(seats.Count, tickets.Count());
-
-            for (int i = 0; i < tickets.Count(); i++)
-            {
-                var ticketSeat = tickets.ElementAt(i).GetSeat();
-                var seat = seats.ElementAt(i);
-
-                Assert.Equal(expected: seat.Row, ticketSeat.Row);
-                Assert.Equal(expected: seat.Column, ticketSeat.Column);
-                Assert.Equal(expected: seat.SeatIdValidation, ticketSeat.SeatId);
-            }
+        [Theory]
+        [InlineData(0, 44, 5, 357)]
+        [InlineData(1, 70, 7, 567)]
+        [InlineData(2, 14, 7, 119)]
+        [InlineData(3, 102, 4, 820)]
+        public void TestTicketSeats(int index, int expectedRow, int expectedColumn, int expectedSeatId)
+        {
+            var ticket = Application.GetTickets("day5-test.txt").ElementAt(index);
+            Assert.Equal(expectedRow, ticket.Row);
+            Assert.Equal(expectedColumn, ticket.Column);
+            Assert.Equal(expectedSeatId, ticket.SeatId);
         }
     }
 }
