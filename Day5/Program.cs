@@ -7,6 +7,8 @@ namespace Day5
     {
         static void Main()
         {
+            Console.WriteLine("Advent of code 2020 - day 5");
+
             var tickets = Application.GetTickets("day5-input.txt");
 
             var highestId = tickets.Select(t => t.SeatId).Max(t => t);
