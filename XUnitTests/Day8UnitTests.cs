@@ -27,7 +27,7 @@ namespace XUnitTests
         public void ExecuteOperations()
         {
             var app = new Application("day8-test.txt");
-            var execution = app.ExecuteOperations(app.Operations);
+            var execution = app.ExecuteOperations();
             Assert.Equal(5, execution.Accumulator);
         }
 

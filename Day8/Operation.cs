@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Day8
 {
-    public class Operation : ICloneable<Operation>
+    public class Operation
     {
         public Operation()
         {
@@ -20,7 +20,6 @@ namespace Day8
 
         public string Instruction { get; set; }
         public int Value { get; set; }
-        public int Executions { get; set; }
 
         public Operation Clone()
         {
@@ -30,9 +29,5 @@ namespace Day8
                 Value = Value
             };
         }
-    }
-    public interface ICloneable<T>
-    {
-        T Clone();
     }
 }
