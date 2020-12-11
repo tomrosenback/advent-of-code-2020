@@ -38,6 +38,14 @@ namespace Day11
             {
                 for (int j = 0; j < rowPosCount; j++)
                 {
+                    foreach (var row in new int[] { -1, 0, 1 })
+                    {
+                        foreach (var pos in new int[] { -1, 0, 1 })
+                        {
+                            Rows[i][j].Adjacents.Add(FindAdjacents(i, j, row, pos));
+                        }
+                    }
+                    
                     var minRow = onlyNearest ? 1 : i;
                     var minPos = onlyNearest ? 1 : j;
 
@@ -66,6 +74,11 @@ namespace Day11
                     }
                 }
             }
+        }
+
+        private List<Position> FindAdjacents(int row, int col, int rowInc, int posInc)
+        {
+            throw new NotImplementedException();
         }
 
         public int NumberOfSeatsOccupied => Rows.SelectMany(r => r).Where(p => p.Occupied).Count();
