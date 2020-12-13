@@ -1,9 +1,6 @@
 ﻿using Helpers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Day11
 {
@@ -38,47 +35,54 @@ namespace Day11
             {
                 for (int j = 0; j < rowPosCount; j++)
                 {
-                    foreach (var row in new int[] { -1, 0, 1 })
-                    {
-                        foreach (var pos in new int[] { -1, 0, 1 })
-                        {
-                            Rows[i][j].Adjacents.Add(FindAdjacents(i, j, row, pos));
-                        }
-                    }
-                    
-                    var minRow = onlyNearest ? 1 : i;
-                    var minPos = onlyNearest ? 1 : j;
+                    // horizontal
+                    SetAdjacents(i, j, 0, 1, onlyNearest);
+                    SetAdjacents(i, j, 0, -1, onlyNearest);
 
-                    if (minRow > minPos)
-                    {
-                        minPos = minRow;
-                    }
-                    else if (minPos > minRow)
-                    {
-                        minRow = minPos;
-                    }
+                    // vertical
+                    SetAdjacents(i, j, 1, 0, onlyNearest);
+                    SetAdjacents(i, j, -1, 0, onlyNearest);
 
-                    for (int row = -minRow; row <= minRow; row++)
-                    {
-                        var adjacentRow = i + row;
-
-                        for (int pos = -minPos; pos <= minPos; pos++)
-                        {
-                            var adjacentPos = j + pos;
-
-                            if (adjacentRow >= 0 && adjacentRow < rowCount && adjacentPos >= 0 && adjacentPos < rowPosCount && i * rowPosCount + j != adjacentRow * rowPosCount + adjacentPos)
-                            {
-                                Rows[i][j].Adjacents.Add(Rows[adjacentRow][adjacentPos]);
-                            }
-                        }
-                    }
+                    // diagonals
+                    SetAdjacents(i, j, 1, 1, onlyNearest);
+                    SetAdjacents(i, j, 1, -1, onlyNearest);
+                    SetAdjacents(i, j, -1, 1, onlyNearest);
+                    SetAdjacents(i, j, -1, -1, onlyNearest);
                 }
             }
         }
 
-        private List<Position> FindAdjacents(int row, int col, int rowInc, int posInc)
+        private void SetAdjacents(int row, int col, int rowInc, int posInc, bool onlyNearest)
         {
-            throw new NotImplementedException();
+            var rowCount = Rows.Count;
+            var rowPosCount = Rows.First().Count;
+            List<List<int>> adjacents = new List<List<int>>();
+
+            for (int i = row + rowInc; i >= 0 && i < rowCount; i += rowInc)
+            {
+                for (int j = col + posInc; j >= 0 && j < rowPosCount; j += posInc)
+                {
+                    if (i >= 0 && i < rowCount && j >= 0 && j <= rowPosCount)
+                    {
+                        adjacents.Add(new List<int>() { i, j });
+                    }
+
+                    if (onlyNearest)
+                    {
+                        break;
+                    }
+                }
+
+                if (onlyNearest)
+                {
+                    break;
+                }
+            }
+
+            if (adjacents.Any())
+            {
+                Rows[row][col].Adjacents.Add(adjacents);
+            }
         }
 
         public int NumberOfSeatsOccupied => Rows.SelectMany(r => r).Where(p => p.Occupied).Count();
@@ -129,7 +133,19 @@ namespace Day11
             {
                 foreach (var pos in row.Where(p => p.IsSeat))
                 {
-                    var adjacentsOccupied = pos.Adjacents.Where(p => p.Occupied).Count();
+                    int adjacentsOccupied = 0;
+
+                    foreach (var adjacents in pos.Adjacents)
+                    {
+                        foreach (var adjacentPos in adjacents)
+                        {
+                            if(Rows[adjacentPos.First()][adjacentPos.Last()].Occupied)
+                            {
+                                adjacentsOccupied++;
+                                break;
+                            }
+                        }
+                    }
 
                     if (!pos.Occupied && adjacentsOccupied == 0)
                     {
