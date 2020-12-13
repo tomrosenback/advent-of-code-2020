@@ -10,13 +10,11 @@ namespace Day11
             Occupied = position == '#';
             NewOccupation = false;
             Dirty = false;
-            Adjacents = new List<List<List<int>>>();
         }
 
         public bool IsSeat { get; set; }
         public bool Occupied { get; set; }
         public bool NewOccupation { get; set; }
         public bool Dirty { get; set; }
-        public List<List<List<int>>> Adjacents { get; set; }
     }
 }

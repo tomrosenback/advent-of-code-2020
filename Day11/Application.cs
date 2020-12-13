@@ -21,68 +21,39 @@ namespace Day11
 
             }).ToList();
 
-            SetAdjacents(true);
+            RowsCount = Rows.Count;
+            RowPosCount = Rows.First().Count();
         }
 
-        private void SetAdjacents(bool onlyNearest)
-        {
-            ClearAdjacents();
-
-            var rowCount = Rows.Count;
-            var rowPosCount = Rows.First().Count;
-
-            for (int i = 0; i < rowCount; i++)
-            {
-                for (int j = 0; j < rowPosCount; j++)
-                {
-                    // horizontal
-                    SetAdjacents(i, j, 0, 1, onlyNearest);
-                    SetAdjacents(i, j, 0, -1, onlyNearest);
-
-                    // vertical
-                    SetAdjacents(i, j, 1, 0, onlyNearest);
-                    SetAdjacents(i, j, -1, 0, onlyNearest);
-
-                    // diagonals
-                    SetAdjacents(i, j, 1, 1, onlyNearest);
-                    SetAdjacents(i, j, 1, -1, onlyNearest);
-                    SetAdjacents(i, j, -1, 1, onlyNearest);
-                    SetAdjacents(i, j, -1, -1, onlyNearest);
-                }
-            }
-        }
-
-        private void SetAdjacents(int row, int col, int rowInc, int posInc, bool onlyNearest)
+        private int GetAdjacentsOccupied(int row, int col, int rowInc, int posInc, bool onlyNearest)
         {
             var rowCount = Rows.Count;
             var rowPosCount = Rows.First().Count;
-            List<List<int>> adjacents = new List<List<int>>();
+            int occupiedAdjacents = 0;
 
             for (int i = row + rowInc; i >= 0 && i < rowCount; i += rowInc)
             {
                 for (int j = col + posInc; j >= 0 && j < rowPosCount; j += posInc)
                 {
-                    if (i >= 0 && i < rowCount && j >= 0 && j <= rowPosCount)
+                    if (i >= 0 && i < rowCount && j >= 0 && j <= rowPosCount && Rows[i][j].IsSeat && Rows[i][j].Occupied)
                     {
-                        adjacents.Add(new List<int>() { i, j });
+                        occupiedAdjacents++;
+                        break;
                     }
 
-                    if (onlyNearest)
+                    if (onlyNearest || occupiedAdjacents > 0)
                     {
                         break;
                     }
                 }
 
-                if (onlyNearest)
+                if (onlyNearest || occupiedAdjacents > 0)
                 {
                     break;
                 }
             }
 
-            if (adjacents.Any())
-            {
-                Rows[row][col].Adjacents.Add(adjacents);
-            }
+            return occupiedAdjacents;
         }
 
         public int NumberOfSeatsOccupied => Rows.SelectMany(r => r).Where(p => p.Occupied).Count();
@@ -100,69 +71,61 @@ namespace Day11
             }
         }
 
-        public void ClearAdjacents()
-        {
-            foreach (var row in Rows)
-            {
-                foreach (var pos in row.Where(p => p.Adjacents.Any()))
-                {
-                    pos.Adjacents.Clear();
-                }
-            }
-        }
-
         public void FillSeatsByNearestAdjacent()
         {
             ClearSeats();
-            SetAdjacents(true);
-            FillSeats(4);
+            FillSeats(4, true);
         }
 
         public void FillSeatsByAnyAdjacent()
         {
             ClearSeats();
-            SetAdjacents(false);
-            FillSeats(5);
+            FillSeats(5, false);
         }
 
-        private void FillSeats(int minNumberOfOccupiedAdjacents)
+        private void FillSeats(int minNumberOfOccupiedAdjacents, bool onlyNearestAdjacents)
         {
             int seatsOccupied = NumberOfSeatsOccupied;
 
-            foreach (var row in Rows)
+            for (int row = 0; row < Rows.Count(); row++)
             {
-                foreach (var pos in row.Where(p => p.IsSeat))
+                for (int pos = 0; pos < Rows[row].Count; pos++)
                 {
-                    int adjacentsOccupied = 0;
-
-                    foreach (var adjacents in pos.Adjacents)
+                    if (Rows[row][pos].IsSeat)
                     {
-                        foreach (var adjacentPos in adjacents)
+                        int adjacentsOccupied = 0;
+
+                        // horizontal
+                        adjacentsOccupied += GetAdjacentsOccupied(row, pos, 0, 1, onlyNearestAdjacents);
+                        adjacentsOccupied += GetAdjacentsOccupied(row, pos, 0, -1, onlyNearestAdjacents);
+
+                        // vertical
+                        adjacentsOccupied += GetAdjacentsOccupied(row, pos, 1, 0, onlyNearestAdjacents);
+                        adjacentsOccupied += GetAdjacentsOccupied(row, pos, -1, 0, onlyNearestAdjacents);
+
+                        // diagonals
+                        adjacentsOccupied += GetAdjacentsOccupied(row, pos, 1, 1, onlyNearestAdjacents);
+                        adjacentsOccupied += GetAdjacentsOccupied(row, pos, 1, -1, onlyNearestAdjacents);
+                        adjacentsOccupied += GetAdjacentsOccupied(row, pos, -1, 1, onlyNearestAdjacents);
+                        adjacentsOccupied += GetAdjacentsOccupied(row, pos, -1, -1, onlyNearestAdjacents);
+
+                        if (!Rows[row][pos].Occupied && adjacentsOccupied == 0)
                         {
-                            if(Rows[adjacentPos.First()][adjacentPos.Last()].Occupied)
-                            {
-                                adjacentsOccupied++;
-                                break;
-                            }
+                            Rows[row][pos].Dirty = true;
+                            Rows[row][pos].NewOccupation = true;
                         }
-                    }
-
-                    if (!pos.Occupied && adjacentsOccupied == 0)
-                    {
-                        pos.Dirty = true;
-                        pos.NewOccupation = true;
-                    }
-                    else if (pos.Occupied && adjacentsOccupied >= minNumberOfOccupiedAdjacents)
-                    {
-                        pos.Dirty = true;
-                        pos.NewOccupation = false;
+                        else if (Rows[row][pos].Occupied && adjacentsOccupied >= minNumberOfOccupiedAdjacents)
+                        {
+                            Rows[row][pos].Dirty = true;
+                            Rows[row][pos].NewOccupation = false;
+                        }
                     }
                 }
             }
 
             foreach (var row in Rows)
             {
-                foreach (var pos in row)
+                foreach (var pos in row.Where(p => p.IsSeat))
                 {
                     if (pos.Dirty)
                     {
@@ -174,10 +137,12 @@ namespace Day11
 
             if (seatsOccupied != NumberOfSeatsOccupied)
             {
-                FillSeats(minNumberOfOccupiedAdjacents);
+                FillSeats(minNumberOfOccupiedAdjacents, onlyNearestAdjacents);
             }
         }
 
         public List<List<Position>> Rows { get; set; }
+        public int RowsCount { get; private set; }
+        public int RowPosCount { get; }
     }
 }

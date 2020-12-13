@@ -16,14 +16,10 @@ namespace XUnitTests
 
             Assert.True(position.IsSeat);
             Assert.False(position.Occupied);
-            Assert.Equal(3, position.Adjacents.Count);
-            //Assert.Equal(2, position.Adjacents.SelectMany(r => r).Where(p => p.IsSeat).Count());
-
+            
             position = app.Rows.Last().Last();
             Assert.True(position.IsSeat);
             Assert.False(position.Occupied);
-            Assert.Equal(3, position.Adjacents.Count);
-            //Assert.Equal(2, position.Adjacents.SelectMany(r => r).Where(p => p.IsSeat).Count());
         }
 
         [Fact]
